@@ -4,7 +4,7 @@ use warnings;
 
 my $nargs = $#ARGV + 1;
 if ($nargs != 1) {
-	print "Usage: perl $0 filename";
+	print "Usage: perl $0 filename\n";
 	exit;
 }
 
@@ -21,12 +21,11 @@ while (<FH>) {
 }
 
 sub is_valid_bible_verse {
-	my $D = qr/[0-9]+/;
-	my $V = qr/${D}(-${D})?(,${D}(-${D})?)*/;
-	my $B = qr/([0-9] )?[A-Za-z]+/;
-	my $X = qr/${D}(:${V})?/;
-	my $R = qr/(${X}(;${X})*)?/;
-	my $T = qr/(\([A-Za-z]*\))*/;
+	my $D = qr/[0-9]+/; 						# one or more digits. E.g. 123
+	my $V = qr/${D}(-${D})?(,${D}(-${D})?)*/;	# verse or verse ranges E.g. 1-3,14-16
+	my $B = qr/([0-9] )?[A-Za-z]+/;				# book name. E.g. 2 John
+	my $X = qr/${D}(:${V})?/;					# chapter + verse E.g. 12:1-3,14-16
+	my $R = qr/(${X}(;${X})*)?/;				# groups of CV. E.g. 12:1-3,14-16;1:3-5
+	my $T = qr/(\([A-Za-z]*\))?/;				# version. E.g. (blahblahBlah)
 	return $_[0] =~ /^${B}\s*${R}\s*${T}$/;
-	# return $_[0] =~ /^${B}\s*${R}\s*${T}$/;
 }
