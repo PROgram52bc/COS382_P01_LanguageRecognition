@@ -1,0 +1,11 @@
+VALID: John
+VALID: 1 John 1:2-4
+VALID: Ps 12:1,3-4
+VALID: Rev 2:4;4:3-6 (NASB)
+VALID: 9 Matthew 77:190-314 (MyOwnVersion)
+INVALID: 13 John 1:2
+VALID: 1 John     1:2-4
+INVALID: 13John 1:2
+VALID: 1 John1:2 (NASB)
+VALID: 1 John 1:2(NASB)
+INVALID: 1John 1:2 (NASB)
